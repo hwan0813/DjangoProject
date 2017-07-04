@@ -25,8 +25,8 @@ SECRET_KEY = 'r(!put)+3iu(g8$9fe_&6d9-gyy$qxeg)-fz%^u7!@$*1$e@q2'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['*']
+#ngrok에서 뜬 주소 여기다가 붙여넣음
 
 # Application definition
 
