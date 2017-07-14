@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from blog.views import InsertBook, DisplayMyPage, DisplayBook
-from crawl.views import DisplayLotte
+
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -26,5 +26,4 @@ urlpatterns = [
         InsertBook),
     #isbn이 링크뒤에 붙으면 바로 displaybook 이거 함수호출
     url(r'^show/(?P<isbn>.+)', DisplayBook),
-    url(r'^main/', DisplayLotte),
 ]
