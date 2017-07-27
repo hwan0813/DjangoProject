@@ -26,9 +26,5 @@ urlpatterns = [
         InsertBook),
     #isbn이 링크뒤에 붙으면 바로 displaybook 이거 함수호출
     url(r'^show/(?P<isbn>.+)', DisplayBook),
-<<<<<<< HEAD
     url(r'^dojo/',include('dojo.urls')), # 절대로 url(r'^dojo/$'  달러쓰면안됨. 인클루드할땐. 
-=======
-    url(r'^main/', DisplayLotte),
->>>>>>> 4fb921bb499b3627157153c0932c0756d86ea438
 ]
