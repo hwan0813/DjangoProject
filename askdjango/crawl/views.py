@@ -1,3 +1,6 @@
+# BlogData를 import해옵니다
+from crawl.models import Lotte
+
 from django.shortcuts import render
 import pymysql
 import requests
@@ -9,9 +12,6 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "askdjango.settings")
 # 이제 장고를 가져와 장고 프로젝트를 사용할 수 있도록 환경을 만듭니다.
 import django
 django.setup()
-
-# BlogData를 import해옵니다
-from crawl.models import Lotte
 
 # Create your views here.
 # 이거 하면 파이썬에서 맞는건데 pylint가 에러발생시키는걸 무시.

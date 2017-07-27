@@ -15,8 +15,16 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from blog.views import InsertBook, DisplayMyPage, DisplayBook
+from crawl.views import DisplayLotte
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^blog/', include('blog.urls'))
+    url(r'^blog/', include('blog.urls')),
+    url(r'^mypage/', DisplayMyPage), #url에 mypage 요청들어오면 Dis~ 실행
+    url(r'^insert/(?P<isbn>.+);(?P<title>.+);(?P<memo>.*)',
+        InsertBook),
+    #isbn이 링크뒤에 붙으면 바로 displaybook 이거 함수호출
+    url(r'^show/(?P<isbn>.+)', DisplayBook),
+    url(r'^main/', DisplayLotte),
 ]

@@ -9,21 +9,43 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
     <!--부트스트랩 CSS파일링크 추가 -->
     <link rel="stylesheet" href="{% static 'css/crawl.css' %}">
+    <!--font 가져옴-->
+    <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">ㄴ
 
+    <style>
+      table {
+        width: 30%;
+        height:5%;
+      }
+      table, th, td {
+        border: 3px solid #bcbcbc;
+      }
+    </style>
 </head>
 
 
 <body>
-<h1><a href="/">Django Girls Blog</a></h1>
-<h1>롯데마트 돼지고기류 크롤링 </h1>
-<h1><a href="/">Django Girls Blog</a></h1>
-
-{% for post in posts %}
-
-{{ post.pro_name }}     {{post.price}}<br>
-
-{% endfor %}
+<div class="page-header">
+    <h1 ><a href="/">롯데마트 돼지고기류 크롤링 </a></h1>
+</div>
 
 
+<table >
+    <tr><th>품목이름</th><th>가격</th></tr>
+    <div class="content container">
+    <div class="row">
+        <div class="col-md-8">
+            {% for post in posts %}
+                        
+                       <tr> 
+                       <td>{{ post.pro_name }} </td>
+                       <td>{{post.price}}</td>
+                       </tr>               
+              
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<table>
 </body>
 </html>
