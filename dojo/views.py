@@ -17,3 +17,6 @@ def mysum(request, x, y=0, z=0): # 디폴트 인자를 지정. 그니까 안넘�
     return HttpResponse(int(x) + int(y) + int(z)) # httpResponse 임포트 해주고 써야함. 
 # HttpResponse(x+100)으로 하면 안되는 이유는 x는 무조건 문자열이기 때문. 
 # 그래서 x를 int 로 바꿔주고 하면 되네 . 
+
+def hello(request, name, age):
+    return HttpResponse('안녕하세요. {}. {} 살이시네요 '.format(name, age))
