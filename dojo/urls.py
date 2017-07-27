@@ -1,5 +1,7 @@
 from django.conf.urls import url # url 패턴 쓰기위해 임포트
 from . import views
+from . import views_cbv
+
 urlpatterns = [
     
     #존나 많이 / 슬래쉬 숫자 받아도 다 더할수있도록
@@ -19,4 +21,9 @@ urlpatterns = [
     url(r'^list2/$',views.post_list2),
     url(r'^list3/$',views.post_list3),
     url(r'^excel/$',views.excel_download),
+
+    url(r'^cbv/list1/$',views_cbv.post_list1),
+    url(r'^cbv/list2/$',views_cbv.post_list2),
+    #url(r'^cbv/list3/$',views_cbv.post_list3),
+    #url(r'^cbv/excel/$',views_cbv.excel_download),
 ]
