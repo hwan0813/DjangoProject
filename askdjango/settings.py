@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog', # 반드시 앱 생성후 여기 등록해야함. 끝에반드시 컴마
+    'django_extensions',
     'crawl',
     'dojo',
 ]
