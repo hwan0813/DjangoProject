@@ -33,7 +33,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
+    'django.contrib.admin', # 기본적으로 제공해주는 어드민앱.
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
