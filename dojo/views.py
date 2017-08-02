@@ -36,9 +36,15 @@ def post_list1(request):
 # pylint: disable=E1101
 def post_list2(request):
     qs = Post.objects.all()
+    
+    q = request.GET.get('q','') # q있으면 ㄴ가져오고 없으면 빈문자가져오고
+    if q: # q가 있다면...?
+        qs = qs.filter(title__icontains = q)
+    #이게 가능한 이유가 그냥 request라는 인자때문에 그냥 무한히 왕복 주고받고가능한건가. 
+
     name = ' 이것도 넘겨보자. '
     return render(request, 'dojo/post_list2.html',
-     {'name':name, 'post_list' : qs} 
+     {'name':name, 'post_list' : qs, 'q':q} 
     ) # 인자 넘기나봄. 
 
 #각함수는 두줄씩띄워주는게 좋다

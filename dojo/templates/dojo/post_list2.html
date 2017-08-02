@@ -2,11 +2,18 @@
 <h1>하이 d루</h1>
     <p>{{name}}</p>
     <p> 템플릿 실습중 템플릿에선 대괄호d 두개써주네  <p> 
+
+<form action = "" method = "get">
+    <input type='text' name="q" value = "{{ q }}"/> 
+    <!--맨처음 {{q}}안먹혔던이유 : views.py에서 렌더에서 'q':q 를 안해줬으니까 당연. -->
+    <input type="submit" value = "검색하긷"/>
+</form>
+
 <ul>
-<!-- 이게 렌더링된 값을 가져오는 방법임. {{ }} 이런식으로.   -->
+<!-- 이게 렌더링된 값을 가져오는 방법임. 중괄호두개로    -->
 {% for post in post_list %}
     <li>
-        
+        {{ post.id }}
         {{ post.title }} <br>
         <small>{{ post.content }}</small> <br>
         <small>{{ post.updated_at }}</small>
