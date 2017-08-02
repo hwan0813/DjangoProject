@@ -9,5 +9,17 @@
 
         {{ post.content|linebreaks }}
         <!--line breaks써주면 html 개행 무시하던걸 안무시하게 해줌. -->
+
+
+        <h3>Comments</h3>
+        <ul>
+        {% for comment in  post.comment_set.all %}
+        <li>
+            {{ comment.message }}
+            {{ comment.author }}
+            {{ comment.updated_at}}
+        </li>
+        {%endfor%}
+        </ul>
     </body>
 </html>

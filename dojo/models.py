@@ -15,6 +15,7 @@ STATUS_CHOICES = (
 )
 
 class Post(models.Model):
+    author = models.CharField(max_length=20)
     title = models.CharField(max_length=100,
         choices = (
             ('제목1', '제목1 레이블'), # ('저장된값','UI에 보여질레이블')
@@ -42,3 +43,10 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+class Comment(models.Model):
+    post = models.ForeignKey(Post)
+    author = models.CharField(max_length=20)
+    message = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
