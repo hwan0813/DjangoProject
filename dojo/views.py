@@ -1,7 +1,8 @@
 # dojo 밑의 view.py 파일.
 import os
+from django.http import Http404
 from django.http import HttpResponse, JsonResponse
-from django.shortcuts import render
+from django.shortcuts import render ,get_object_or_404
 from .models import Post
 
 
@@ -46,6 +47,20 @@ def post_list2(request):
     return render(request, 'dojo/post_list2.html',
      {'name':name, 'post_list' : qs, 'q':q} 
     ) # 인자 넘기나봄. 
+
+def post_detail(request, id):
+    #try: # 포스트가 삭제되었을경우, 서버에러(500)으로 처리되는것이아니라 404로 처리도되도록 예외처리해줌. 
+    #    post = Post.objects.get(id=id)
+    #except Post.DoesNotExist:
+    #    raise Http404
+    # 위의 4줄이랑 같은코드. 이걸쓰자. shortcut으로부터 import는 하고 
+    post = get_object_or_404(Post, id=id)
+    #지정레코드가 없는것은 서버오류가 아니므로 모든 인스턴스처리는 get_ob~404로 한다. 
+
+    return render(request, 'dojo/post_detail.html', {
+    'post':post,
+    })
+
 
 #각함수는 두줄씩띄워주는게 좋다
 def post_list3(request):

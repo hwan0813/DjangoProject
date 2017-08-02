@@ -1,0 +1,13 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>{{ post.title }}</title>
+    </head>
+    <body>
+        <h1>{{ post.title }}</h1>
+
+        {{ post.content|linebreaks }}
+        <!--line breaks써주면 html 개행 무시하던걸 안무시하게 해줌. -->
+    </body>
+</html>

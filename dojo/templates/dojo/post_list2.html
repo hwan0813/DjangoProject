@@ -14,8 +14,11 @@
 {% for post in post_list %}
     <li>
         {{ post.id }}
-        {{ post.title }} <br>
-        <small>{{ post.content }}</small> <br>
+        <a href="/dojo/{{ post.id }}">
+        {{ post.title }}
+        </a>
+         <br>
+        
         <small>{{ post.updated_at }}</small>
     </li>
 {% endfor %}
