@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe # 태그문자열을 문자처럼 되도록. 
-from .models import Post, Comment
+from .models import Post, Comment, Tag
 
 #그냥 단순 등록이아니라 이렇게 하면 admin 계정에서 웹으로 관리할때 내용이 상세하게 보임. 
 @admin.register(Post) #장식자 형태로 쓴것. ... 까먹음. 
@@ -33,3 +33,8 @@ class PostAdmin(admin.ModelAdmin):
 @admin.register(Comment)
 class CommnetAdmin(admin.ModelAdmin):
     pass
+
+@admin.register(Tag)
+class TagAdmin(admin.ModelAdmin):
+    list_display = ['name']
+    

@@ -28,6 +28,9 @@ class Post(models.Model):
         #help 텍스트하면 입력폼위에 회색글씨 작은걸로 도움말. 
     #길이 제한이 없는 문자열 -> 텍스트필드, 데이터베이스는 엄연히 다르니까.
     
+    tag_set = models.ManyToManyField('Tag')
+    #그냥 Tag하면 안되는이유가 Tag클래스가 이거보다 뒤에 정의되어있기때문. 그래서 이렇게하는거. 
+
     status = models.CharField(max_length=1, choices=STATUS_CHOICES)
     tags = models.CharField(max_length=100, blank=True)
     lnglat = models.CharField(max_length=50, help_text='경도/위도 포맷으로 입력',
@@ -50,3 +53,10 @@ class Comment(models.Model):
     message = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+
+class Tag(models.Model):
+    name = models.CharField(max_length=50, unique=True)
+
+    def __str__(self):
+        return self.name
