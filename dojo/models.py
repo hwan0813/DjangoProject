@@ -36,3 +36,5 @@ class Post(models.Model):
     # 현재 하나의 포스트 레코드가 최초저장될때 일시가 자동저장
     updated_at = models.DateTimeField(auto_now=True) # 해동레코드가 갱신될때마다 일시가 자동 저장.
 
+    def __str__(self):
+        return self.title

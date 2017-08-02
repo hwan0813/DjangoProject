@@ -2,6 +2,7 @@
 import os
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
+from .models import Post
 
 
 def mysum2(request,numbers):
@@ -31,10 +32,14 @@ def post_list1(request):
     <p> 실습중 <p>
     '''.format(name = name)
     )
-
+# 메인화면. 데이터베이스에서 가져와서 보여주는것 추가. 
+# pylint: disable=E1101
 def post_list2(request):
-    name = ' 공ㅇ'
-    return render(request, 'dojo/post_list2.html', {'name':name}) # 인자 넘기나봄. 
+    qs = Post.objects.all()
+    name = ' 이것도 넘겨보자. '
+    return render(request, 'dojo/post_list2.html',
+     {'name':name, 'post_list' : qs} 
+    ) # 인자 넘기나봄. 
 
 #각함수는 두줄씩띄워주는게 좋다
 def post_list3(request):
@@ -51,3 +56,4 @@ def excel_download(request):
         response = HttpResponse(f, content_type = 'application/vnd.ms-excel')
         response['Content-Disposition'] = 'attachment; filename ="{}"'.format(filename)
         return response
+
