@@ -16,19 +16,21 @@ STATUS_CHOICES = (
 
 class Post(models.Model):
     author = models.CharField(max_length=20)
-    title = models.CharField(max_length=100,
-        choices = (
-            ('제목1', '제목1 레이블'), # ('저장된값','UI에 보여질레이블')
-            ('제목2', '제목2 레이블'),
-            ('제목3', '제목3 레이블'),
-        ))
+    title = models.CharField(max_length=100)
+    #아래처럼 하면 화살표눌러서 기사, 스포츠, 등등에서 선택하게 해줌.
+    #title = models.CharField(max_length=100,
+    #    choices = (
+    #        ('제목1', '기사'), # ('저장된값','UI에 보여질레이블')
+    #        ('제목2', '스포츠'),
+    #        ('제목3', '등등'),
+    #    ))
     #길이 제한이 있는 문자열 -> 캐릭터필드
     content = models.TextField(verbose_name="내용" , 
         help_text='여기에 내용을 입력하세요!') #verbose네임하면 필드입력이 이렇게 보여짐
         #help 텍스트하면 입력폼위에 회색글씨 작은걸로 도움말. 
     #길이 제한이 없는 문자열 -> 텍스트필드, 데이터베이스는 엄연히 다르니까.
     
-    tag_set = models.ManyToManyField('Tag')
+    tag_set = models.ManyToManyField('Tag', blank = True)
     #그냥 Tag하면 안되는이유가 Tag클래스가 이거보다 뒤에 정의되어있기때문. 그래서 이렇게하는거. 
 
     status = models.CharField(max_length=1, choices=STATUS_CHOICES)
