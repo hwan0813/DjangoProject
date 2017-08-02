@@ -36,5 +36,9 @@ class Post(models.Model):
     # 현재 하나의 포스트 레코드가 최초저장될때 일시가 자동저장
     updated_at = models.DateTimeField(auto_now=True) # 해동레코드가 갱신될때마다 일시가 자동 저장.
 
+    class Meta: #기본 정렬 옵션 지정해주는것. id기준으로 역순 출력되도록. 
+        ordering = ['-id']
+        
+
     def __str__(self):
         return self.title

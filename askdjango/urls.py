@@ -13,6 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
+from django.conf import settings
 from django.conf.urls import include, url
 from django.contrib import admin
 from blog.views import InsertBook, DisplayMyPage, DisplayBook
@@ -29,3 +30,9 @@ urlpatterns = [
     url(r'^dojo/',include('dojo.urls')), # 절대로 url(r'^dojo/$'  달러쓰면안됨. 인클루드할땐. 
     
 ]
+# 디버그 툴바 띄워주기. 실제 서비스모드에서는 셋팅에서 DEBUG=False 임. 
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns += [ 
+         url(r'^__debug__/', include(debug_toolbar.urls)),
+    ]
