@@ -28,6 +28,7 @@ urlpatterns = [
     #isbn이 링크뒤에 붙으면 바로 displaybook 이거 함수호출
     url(r'^show/(?P<isbn>.+)', DisplayBook),
     url(r'^dojo/',include('dojo.urls')), # 절대로 url(r'^dojo/$'  달러쓰면안됨. 인클루드할땐. 
+    url(r'^accounts/',include('accounts.urls')),
     
 ]
 # 디버그 툴바 띄워주기. 실제 서비스모드에서는 셋팅에서 DEBUG=False 임. 
