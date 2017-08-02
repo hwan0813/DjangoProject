@@ -1,5 +1,6 @@
 # dojo/models.py
 import re
+from django.conf import settings
 from django.forms import ValidationError
 from django.db import models
 
@@ -15,7 +16,9 @@ STATUS_CHOICES = (
 )
 
 class Post(models.Model):
-    author = models.CharField(max_length=20)
+    
+    user = models.ForeignKey(settings.AUTH_USER_MODEL)
+    #author = models.CharField(max_length=20)
     title = models.CharField(max_length=100)
     #아래처럼 하면 화살표눌러서 기사, 스포츠, 등등에서 선택하게 해줌.
     #title = models.CharField(max_length=100,
