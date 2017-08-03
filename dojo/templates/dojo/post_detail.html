@@ -5,22 +5,29 @@
 {% endblock %}
 
 {% block content %}
- <h1>{{ post.title }}</h1>
+<div class="container">
+    <div class="row">
+                    <div class="col-sm-12">
+                        <h1>{{ post.title }}</h1>
 
-        {{ post.content|linebreaks }}
-        <!--line breaks써주면 html 개행 무시하던걸 안무시하게 해줌. -->
+                    {{ post.content|linebreaks }}
+                    <!--line breaks써주면 html 개행 무시하던걸 안무시하게 해줌. -->
 
 
-        <h3>Comments</h3>
-        <ul>
-        {% for comment in  post.comment_set.all %}
-        <li>
-            {{ comment.message }}
-            {{ comment.author }}
-            {{ comment.updated_at}}
-        </li>
-        {%endfor%}
-        </ul>
-<hr/>
-<a href ="{% url "dojo:post_list2" %}">목록으로 돌아가기</a>
+                    <h3>Comments</h3>
+                    <ul>
+                    {% for comment in  post.comment_set.all %}
+                    <li>
+                        {{ comment.message }}
+                        {{ comment.author }}
+                        {{ comment.updated_at}}
+                    </li>
+                    {%endfor%}
+                    </ul>
+            <hr/>
+            <a href ="{% url "dojo:post_list2" %}" class="btn btn-primary">목록으로 돌아가기</a>
+        </div>
+    </div>
+</div>  
+ 
 {% endblock %}

@@ -6,7 +6,7 @@ urlpatterns = [
     
     url(r'^insert/(?P<isbn>.+);(?P<title>.+);(?P<memo>.*)', 
     views.InsertBook), # 왜 사이트는 MyAppView라고햇찌 ㅅㅂ
-
+    
     url(r'^$', views.post_list)
    
      # 꺽쇠가 문자열의 시작, 달러가 문자열의 끝

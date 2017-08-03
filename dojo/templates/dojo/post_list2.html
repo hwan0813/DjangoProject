@@ -2,32 +2,58 @@
 
 {% block content %}
 
-<p>{{name}}</p>
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Django Template <sup>by AskDjango</sup></h1>
+            <p>여러분의 파이썬/장고 페이스메이커가 되겠습니다.</p>
+            <p>
+            <a class="btn btn-lg btn-primary" href="http://facebook.com/groups/askdjango">
+                AskDjango 페이스북 그룹 &raquo;
+                </a>
+                    </p>
+        </div>
 
-<form action = "" method = "get">
-    <input type='text' name="q" value = "{{ q }}"/> 
-    <!--맨처음 {{q}}안먹혔던이유 : views.py에서 렌더에서 'q':q 를 안해줬으니까 당연. -->
-    <input type="submit" value = "검색하긷"/>
-</form>
+        <div class="row">
+            <div class="col-sm-12">
+                    <div class="alert alert-info">
+                        
+                    <ul>
+                        <li> http~~~ list2로 접속해봐</li>
+                        <li> 템플릿 경로를 왜 template 밑에 다시 dojo를 만들고 
+                            밑에 또 추가하는 이유는 그 네임스페이스(같은 이름의 템플릿 쓸경우 대비해서
+                            템플릿 파인더가 쉽게 찾게해주기위함)</li>
+                    </ul>
+                    </div>
+                    <p>{{name}}</p>
+                    <p>
+                    <form action = "" method = "get">
+                        <input type='text' name="q" value = "{{ q }}"/> 
+                        <!--맨처음 {{q}}안먹혔던이유 : views.py에서 렌더에서 'q':q 를 안해줬으니까 당연. -->
+                        <input type="submit" value = "검색하긷" class='btn btn-primary'/>
+                    </form>
+                    </p>
+                    <table class ="table table-hover table-bordered">
+                    <thead>
+                    <th>id</th>
+                    <th>title</th>
+                    <th>updated_at</th>
+                    </thead>
+                    <tbody>
+                    <!-- 이게 렌더링된 값을 가져오는 방법임. 중괄호두개로    -->
+                    {% for post in post_list %}
+                        <tr>
+                            <td> {{ post.id }}  </td>
+                            <td><a href = "{% url "dojo:post_detail" post.id %}">{{ post.title }}</a></td>
+                            
+                            <td><small>{{ post.updated_at }}</small></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                    </table>
+            </div>
 
-<ul>
-<!-- 이게 렌더링된 값을 가져오는 방법임. 중괄호두개로    -->
-{% for post in post_list %}
-    <li>
-        {{ post.id }}
-        <a href = "{% url "dojo:post_detail" post.id %}">
-        {{ post.title }}
-        </a>
-        <!-- 이렇게 쓰는건 URL reverse안할때.
-        <a href="/dojo/{{ post.id }}">
-        {{ post.title }}
-        </a>
-        -->
-         <br>
-        
-        <small>{{ post.updated_at }}</small>
-    </li>
-{% endfor %}
-</ul>
+    </div>
+
+
 {% endblock %}
 
