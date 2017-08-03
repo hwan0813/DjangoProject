@@ -3,6 +3,7 @@ import re
 from django.conf import settings
 from django.forms import ValidationError
 from django.db import models
+from django.core.urlresolvers import reverse
 
 # Create your models here.
 def lnglat_validator(value):
@@ -51,6 +52,11 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+    #이걸 반드시 구현하라 . 그래야 코드의 효율성이 많이 올라감. 별 50개
+    # 이렇게 하면 post = Post.objects.get(id=10)한다음 resolve_url(post)하면 바로 이게 /dojo/10/을 의미하게 됨. 
+    def get_absolute_url(self):
+        return reverse('dojo:post_detail', arg=[self.id])
 
 class Comment(models.Model):
     post = models.ForeignKey(Post)
