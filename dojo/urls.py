@@ -18,7 +18,7 @@ urlpatterns = [
     # dojo 나오고, sum 나오고 숫자!! 나오면 view.mysum이 호출된다는 말. 
 
     url(r'^list1/$',views.post_list1),
-    url(r'^list2/$',views.post_list2),
+    url(r'^list2/$',views.post_list2, name='post_list2'), # URL Reverse를 위한 지정. 
     url(r'^list3/$',views.post_list3),
     url(r'^excel/$',views.excel_download),
 
@@ -26,5 +26,6 @@ urlpatterns = [
     url(r'^cbv/list2/$',views_cbv.post_list2),
     #url(r'^cbv/list3/$',views_cbv.post_list3),
     #url(r'^cbv/excel/$',views_cbv.excel_download),
-    url(r'^(?P<id>\d+)/$', views.post_detail),
+    url(r'^fefefefe/(?P<id>\d+)/$', views.post_detail, name = 'post_detail'),
+    # url 막바꿔도 이제 url reverse때매 알아서 하이퍼링크바뀐주소가 잘 찾아서감. 
 ]

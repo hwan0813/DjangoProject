@@ -15,9 +15,14 @@
 {% for post in post_list %}
     <li>
         {{ post.id }}
+        <a href = "{% url "post_detail" post.id %}">
+        {{ post.title }}
+        </a>
+        <!-- 이렇게 쓰는건 URL reverse안할때.
         <a href="/dojo/{{ post.id }}">
         {{ post.title }}
         </a>
+        -->
          <br>
         
         <small>{{ post.updated_at }}</small>

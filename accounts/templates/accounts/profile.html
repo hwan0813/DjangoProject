@@ -1,0 +1,11 @@
+{% extends "accounts/layout.html" %}
+
+{% block content %}
+    <h2> {{user}}'s Profile</h2>
+    <ul>
+    <li> username:  {{ uesr.username }} </li>
+    <li> useremail: {{ user.email }} </li>
+    <li> user's join date : {{ user.date_joined}} </li>
+    
+    </ul>
+{% endblock %}
