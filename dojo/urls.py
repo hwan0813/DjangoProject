@@ -26,6 +26,6 @@ urlpatterns = [
     url(r'^cbv/list2/$',views_cbv.post_list2),
     #url(r'^cbv/list3/$',views_cbv.post_list3),
     #url(r'^cbv/excel/$',views_cbv.excel_download),
-    url(r'^fefefefe/(?P<id>\d+)/$', views.post_detail, name = 'post_detail'),
+    url(r'^(?P<id>\d+)/$', views.post_detail, name = 'post_detail'),
     # url 막바꿔도 이제 url reverse때매 알아서 하이퍼링크바뀐주소가 잘 찾아서감. 
 ]

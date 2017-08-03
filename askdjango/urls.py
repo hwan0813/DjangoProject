@@ -18,8 +18,16 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from blog.views import InsertBook, DisplayMyPage, DisplayBook
 from crawl.views import DisplayLotte
+from django.shortcuts import redirect
+
+#최상위주소로 들어오면 바로 메인페이지로 연결해주고싶을때
+def root(request):
+    return redirect('dojo:post_list2')
 
 urlpatterns = [
+    #url(r'^$',root, name ='root'),
+    url(r'^$', lambda r:redirect('dojo:post_list2'), name ='root'),
+    # 람다함수로 바로 써도됨. 람다람다 . 
     url(r'^admin/', admin.site.urls),
     url(r'^blog/', include('blog.urls')),
     url(r'^mypage/', DisplayMyPage), #url에 mypage 요청들어오면 Dis~ 실행
@@ -27,7 +35,8 @@ urlpatterns = [
         InsertBook),
     #isbn이 링크뒤에 붙으면 바로 displaybook 이거 함수호출
     url(r'^show/(?P<isbn>.+)', DisplayBook),
-    url(r'^dojo/',include('dojo.urls')), # 절대로 url(r'^dojo/$'  달러쓰면안됨. 인클루드할땐. 
+    url(r'^dojo/',include('dojo.urls', namespace ='dojo')), # 절대로 url(r'^dojo/$'  달러쓰면안됨. 인클루드할땐. 
+    # namespace를 인클루드의 인자로 넣는이유: 그 뷰 참조할때 중복피하기위해. 이러헥하면 dojo:post_list2 이렇게 특정지정 가능. 
     url(r'^accounts/',include('accounts.urls')),
     
 ]
