@@ -1,7 +1,8 @@
-<body>
-<h1>하이 d루</h1>
-    <p>{{name}}</p>
-    <p> 템플릿 실습중 템플릿에선 대괄호d 두개써주네  <p> 
+{% extends "dojo/layout.html" %}
+
+{% block content %}
+
+<p>{{name}}</p>
 
 <form action = "" method = "get">
     <input type='text' name="q" value = "{{ q }}"/> 
@@ -23,4 +24,5 @@
     </li>
 {% endfor %}
 </ul>
-</body>
+{% endblock %}
+
