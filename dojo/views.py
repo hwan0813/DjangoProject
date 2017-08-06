@@ -5,7 +5,7 @@ from django.http import HttpResponse, JsonResponse
 from django.shortcuts import redirect ,render ,get_object_or_404
 from .models import Post
 from .forms import PostForm
-
+from django.contrib import messages
 
 def mysum2(request,numbers):
     result = sum(map(lambda s : int(s or 0), numbers.split("/")))
@@ -40,6 +40,7 @@ def post_new(request):
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
             post = form.save()
+            messages.success(request,'새 포스팅을 저장했습니다.')
             return redirect(post)
     else:
         form = PostForm()
@@ -55,6 +56,7 @@ def post_edit(request, id):
         form = PostForm(request.POST, request.FILES, instance = post)
         if form.is_valid():
             post = form.save()
+            messages.success(request,'포스팅을 수정했습니다')
             return redirect(post)
     else:
         form = PostForm(instance=post)

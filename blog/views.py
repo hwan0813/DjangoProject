@@ -68,3 +68,6 @@ def post_new(request):
     return render(request, 'blog/post_form.html', { 
         'form' : form,
         })
+
+    
+
