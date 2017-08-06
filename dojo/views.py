@@ -2,8 +2,9 @@
 import os
 from django.http import Http404
 from django.http import HttpResponse, JsonResponse
-from django.shortcuts import render ,get_object_or_404
+from django.shortcuts import redirect ,render ,get_object_or_404
 from .models import Post
+from .forms import PostForm
 
 
 def mysum2(request,numbers):
@@ -33,6 +34,34 @@ def post_list1(request):
     <p> 실습중 <p>
     '''.format(name = name)
     )
+
+def post_new(request):
+    if request.method =='POST':
+        form = PostForm(request.POST, request.FILES)
+        if form.is_valid():
+            post = form.save()
+            return redirect(post)
+    else:
+        form = PostForm()
+    return render(request, 'dojo/post_form.html', { 
+            'form':form,   
+        })
+
+#수정하기 추가 
+def post_edit(request, id):
+    post = get_object_or_404(Post, id=id)
+
+    if request.method =='POST':
+        form = PostForm(request.POST, request.FILES, instance = post)
+        if form.is_valid():
+            post = form.save()
+            return redirect(post)
+    else:
+        form = PostForm(instance=post)
+    return render(request, 'dojo/post_form.html', { 
+            'form':form,   
+        })
+
 # 메인화면. 데이터베이스에서 가져와서 보여주는것 추가. 
 # pylint: disable=E1101
 def post_list2(request):

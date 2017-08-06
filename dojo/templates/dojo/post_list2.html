@@ -25,7 +25,9 @@
                     </ul>
                     </div>
                     <p>{{name}}</p>
+                    <a href="{% url "dojo:post_new" %}" class ="btn btn-primary pull-right">New Post</a>
                     <p>
+
                     <form action = "" method = "get">
                         <input type='text' name="q" value = "{{ q }}"/> 
                         <!--맨처음 {{q}}안먹혔던이유 : views.py에서 렌더에서 'q':q 를 안해줬으니까 당연. -->
