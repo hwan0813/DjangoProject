@@ -1,26 +1,53 @@
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.7/darkly/bootstrap.min.css"/>
-   
+<script src="//code.jquery.com/jquery-2.2.4.min.js"></script> 
+
 <div class="container">
     <div class="row">
         <div class="col-md-12">
                             
                 <h1>Post Form</h1>
-                <form action="" method="post">
-                    {% csrf_token %}
+<form action="" method="post" class="form-horizontal">
+{% csrf_token %}
 
-                    <table class = "table table-hover table-bordered">
-                        {{form.as_table}}
-                    </table>
+{% for error in form.non_field_errors %}
+    <div class="alert alert-danger"
+    {{error}}
+    </div>
+{% endfor %}
+<!-- hidden field는 위젯만 렌더링. .. -->
+{% for field in form.hidden_fields %}
+    {{ field }}
+{% endfor%}
+<!-- visible field는 모든 요소 렌더링 -->
+{% for field in form.visible_fields %}
+    <div class = "form-group">
+        {{ field.label_tag}}
+        <div class ="col-sm-10">
+            {{ field }}
+            {% if field.help_text %}
+                <p class="help-block">{{ field.help_text }}</p>
+            {% endif %}
+            {% for error in field.errors %}
+                <div class="alert alert-danger">
+                    {{error}}
+                </div>
+            {% endfor%}
+        </div>
+    </div>
+{% endfor %}
 
-                    <input type = "submit" class="btn btn-primary" />
+<input type = "submit" class="btn btn-primary" />
 
 </form>
         </div>
     </div>
 </div>
 
-
 <script>
-    var dom = document.getElementById('{{form.user_agent.id_for_label}}');
-    dom.value = navigator.userAgent
+$(function() {
+$('.form-group label').addClass('col-sm-2');
+$('.form-group input, .form-group textarea').addClass('form-control');
+});
+var dom = document.getElementById('{{ form.user_agent.id_for_label }}');
+dom.value = navigator.userAgent;
 </script>
