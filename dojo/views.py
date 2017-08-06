@@ -74,6 +74,8 @@ def post_list2(request):
         qs = qs.filter(title__icontains = q)
     #이게 가능한 이유가 그냥 request라는 인자때문에 그냥 무한히 왕복 주고받고가능한건가. 
 
+    #messages.error(request,'에러메세지 테스트')
+
     name = ' 이것도 넘겨보자. '
     return render(request, 'dojo/post_list2.html',
      {'name':name, 'post_list' : qs, 'q':q} 
