@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django_extensions',
     'crawl',
     'dojo',
+    'imagekit',
     'accounts',
 ]
 
