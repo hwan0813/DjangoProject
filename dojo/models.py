@@ -4,6 +4,8 @@ from django.conf import settings
 from django.forms import ValidationError
 from django.db import models
 from django.core.urlresolvers import reverse
+from imagekit.models import ImageSpecField
+from imagekit.processors import Thumbnail
 
 # Create your models here.
 def lnglat_validator(value):
@@ -39,6 +41,11 @@ class Post(models.Model):
     # media/dojo/post 밑으로저장됨
     # 저기에 또 /%Y/%m/%d 추가해주면 올린 년/달/일자 폴더로 구분되어서 업로드됨 ㅎㄷㄷ
     photo = models.ImageField(blank=True, upload_to='dojo/post/%Y/%m/%d')
+    photo_thumbnail = ImageSpecField(source='photo',
+                        processors=[Thumbnail(300,300)],
+                        format='JPEG',
+                        options={'quality': 60})
+    
     tag_set = models.ManyToManyField('Tag', blank = True)
     #그냥 Tag하면 안되는이유가 Tag클래스가 이거보다 뒤에 정의되어있기때문. 그래서 이렇게하는거. 
 
