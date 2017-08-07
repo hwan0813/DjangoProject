@@ -19,7 +19,7 @@ from django.contrib import admin
 from blog.views import InsertBook, DisplayMyPage, DisplayBook
 from crawl.views import DisplayLotte
 from django.shortcuts import redirect
-
+from django.conf.urls.static import static
 #최상위주소로 들어오면 바로 메인페이지로 연결해주고싶을때
 def root(request):
     return redirect('dojo:post_list2')
@@ -40,6 +40,10 @@ urlpatterns = [
     url(r'^accounts/',include('accounts.urls')),
     
 ]
+# 위에 static 임포트해주고 이거 경로에 추가해줘야됨. 개발환경에서 static file 자동서빙해주지만, 사용자들이 올린
+# media 파일은 자동서빙 안해주기에 이렇게 해야한다...?!
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+ 
 # 디버그 툴바 띄워주기. 실제 서비스모드에서는 셋팅에서 DEBUG=False 임. 
 if settings.DEBUG:
     import debug_toolbar
