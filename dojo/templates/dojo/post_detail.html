@@ -14,7 +14,7 @@
                     {#<img src ="/media/{{ post.photo }}" style="max-width:100%;"/>#}
                     {# if문 안써쭈면 포토안올린 겟시글은 오류뜸. post.photo가 문자열이기에 이런검사가능. #}
                     {% if post.photo %}
-                    <img src ="{{ post.photo_thumbnail.url }}" style="max-width:100%;"/>
+                    <img src ="{{ post.photo.url }}" style="max-width:100%;"/>
                     {% endif %}
                     {{ post.content|linebreaks }}
                     <!--line breaks써주면 html 개행 무시하던걸 안무시하게 해줌. -->
