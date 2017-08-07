@@ -34,6 +34,8 @@ class Post(models.Model):
         #help 텍스트하면 입력폼위에 회색글씨 작은걸로 도움말. 
     #길이 제한이 없는 문자열 -> 텍스트필드, 데이터베이스는 엄연히 다르니까.
     
+    #이미지를 저장할수있는 필드 추가하고, 멬마그레이션+ 마이그레잇
+    photo = models.ImageField(blank=True)
     tag_set = models.ManyToManyField('Tag', blank = True)
     #그냥 Tag하면 안되는이유가 Tag클래스가 이거보다 뒤에 정의되어있기때문. 그래서 이렇게하는거. 
 
