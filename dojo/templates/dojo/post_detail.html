@@ -9,7 +9,13 @@
     <div class="row">
                     <div class="col-sm-12">
                         <h1>{{ post.title }}</h1>
-
+                    
+                    {#이렇게 쓰지마라. 변경될수잇기때문.media는#}
+                    {#<img src ="/media/{{ post.photo }}" style="max-width:100%;"/>#}
+                    {# if문 안써쭈면 포토안올린 겟시글은 오류뜸. post.photo가 문자열이기에 이런검사가능. #}
+                    {% if post.photo %}
+                    <img src ="{{ post.photo.url }}" style="max-width:40%;"/>
+                    {% endif %}
                     {{ post.content|linebreaks }}
                     <!--line breaks써주면 html 개행 무시하던걸 안무시하게 해줌. -->
 
