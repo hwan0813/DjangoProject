@@ -35,7 +35,10 @@ class Post(models.Model):
     #길이 제한이 없는 문자열 -> 텍스트필드, 데이터베이스는 엄연히 다르니까.
     
     #이미지를 저장할수있는 필드 추가하고, 멬마그레이션+ 마이그레잇
-    photo = models.ImageField(blank=True)
+    # upload_to 에 경로지정시 / 절대 쓰지말고 일단 걍써라. 그러며 ㄴ기존에 걍 media 아래저장되던게
+    # media/dojo/post 밑으로저장됨
+    # 저기에 또 /%Y/%m/%d 추가해주면 올린 년/달/일자 폴더로 구분되어서 업로드됨 ㅎㄷㄷ
+    photo = models.ImageField(blank=True, upload_to='dojo/post/%Y/%m/%d')
     tag_set = models.ManyToManyField('Tag', blank = True)
     #그냥 Tag하면 안되는이유가 Tag클래스가 이거보다 뒤에 정의되어있기때문. 그래서 이렇게하는거. 
 
