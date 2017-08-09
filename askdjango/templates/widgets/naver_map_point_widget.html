@@ -1,0 +1,41 @@
+<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId={{ naver_client_id }}"></script>
+
+<!-- 아이디를 유니크하게 만들어서 위젯 두개띄울수있게. 만들때 이렇게 하는것이 좋다. -->
+<style>
+
+#naver_map_point_{{ id }}
+    {
+    width: {{width}};
+    height: {{height}};
+    background-color : red;
+    }
+</style>
+id : {{id}}
+
+<div id="naver_map_point_{{ id }}">
+
+</div>
+
+<script>
+(function(){
+    var base_point = new naver.maps.LatLng({{ base_lat }},{{ base_lng }});
+    //var base_point = new naver.maps.LatLng(37.4979462,127.025427);
+    var dom = document.getElementById('naver_map_point_{{ id }}');
+    var map = new naver.maps.Map(dom,{
+        center: base_point
+    });
+    // 지도위에 마커찍기
+    var marker = new naver.maps.Marker({
+        position : base_point,
+        map : map
+
+    });
+    // 클릭하면 그 위치에 마커가 이동하도록.
+    naver.maps.Event.addListener(map,'click', function(e){
+        marker.setPosition(e.coord);
+        document.getElementById('{{ id }}').value = e.coord.lng()+ ","+ e.coord.lat();
+    });
+
+})(); // }) 여기까지 함수 정의하고 () 이걸로 바로 호출한것. 영역을 보장받기위해?
+
+</script>

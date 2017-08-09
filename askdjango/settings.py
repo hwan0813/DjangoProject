@@ -149,3 +149,5 @@ from django.contrib.messages import constants
 
 MESSAGE_LEVEL = constants.DEBUG # 지금부터 debug레벨의 message를 남길수 있음.
 MESSAGE_TAGS = {constants.ERROR:'danger'}
+
+NAVER_CLIENT_ID = 'TVSvSbaGBr8tEaCJY5Ee' 
