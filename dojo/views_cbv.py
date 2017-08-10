@@ -1,8 +1,11 @@
 from django.http import HttpResponse, JsonResponse
+from django.core.urlresolvers import reverse_lazy
 from django.views.generic import View,TemplateView , ListView, DetailView, UpdateView, CreateView, DeleteView
 from .models import Post
 
-post_delete = DeleteView.as_view(model=Post, success_url = '/dojo/')
+post_delete = DeleteView.as_view(model=Post, success_url = reverse_lazy('dojo:post_list'))
+# 그냥 reverse를 쓰면 코드가 처음 올라가자마자 reverse가 수행되므로 내부로직상(?) 에러가발생
+# 딱 reverse가 필요할때 그제서야 호출하는 reverse_lazy를 통해 문자열을 만들어주는것이 좋다. 
 post_new = CreateView.as_view(model=Post)
 post_edit = UpdateView.as_view(model=Post, fields='__all__')
 
