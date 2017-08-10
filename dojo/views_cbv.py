@@ -1,5 +1,8 @@
 from django.http import HttpResponse, JsonResponse
-from django.views.generic import View,TemplateView
+from django.views.generic import View,TemplateView , ListView
+from .models import Post
+
+post_list = ListView.as_view(model=Post, paginate_by=10)
 
 class PostListView1(View):
     
