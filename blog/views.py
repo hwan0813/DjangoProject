@@ -4,12 +4,18 @@ from .forms import PostForm
 from .models import Post
 
 # Create your views here.
-def post_detail(request, id):
-    post = get_object_or_404(Post, id=id)
-    return render(request, 'blog/post_detail.html',{
-    'post' : post,
-    })
 
+def generate_view_fn(model):
+    def view_fn(request, id):
+        instance = get_object_or_404(model, id=id)
+        instance_name = model._meta.model_name
+        template_name = '{}/{}_detail.html'.format(model._meta.app_label, instance_name)
+        return render(request, template_name, {
+            instance_name: instance,
+            })
+    return view_fn
+
+post_detail = generate_view_fn(Post) # post_detail은 함수이다. gen~ 함수가 리턴해준 view_fn을 가지고 있는
 
 def post_list(request):
     return render(request, 'blog/post_list.html')
