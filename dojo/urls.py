@@ -29,7 +29,9 @@ urlpatterns = [
     url(r'^(?P<pk>\d+)/$', views_cbv.post_detail, name = 'post_detail'),
     # url 막바꿔도 이제 url reverse때매 알아서 하이퍼링크바뀐주소가 잘 찾아서감. 
     url(r'^new/$', views.post_new, name ='post_new'),
-    url(r'^(?P<id>\d+)/edit$', views.post_edit, name = 'post_edit'),
+    url(r'^(?P<id>\d+)/edit/$', views.post_edit, name = 'post_edit'),
 
+    url(r'^cbv/new/$', views_cbv.post_new),
+    url(r'^cbv/(?P<pk>\d+)/edit/$', views_cbv.post_edit),
 
 ]
