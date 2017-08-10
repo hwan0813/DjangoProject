@@ -9,7 +9,7 @@ urlpatterns = [
     
     url(r'^$', views.post_list),
    
-    url(r'^(?P<id>\d+)/$',views.post_detail),
+    url(r'^(?P<pk>\d+)/$',views.post_detail),
 
     # 꺽쇠가 문자열의 시작, 달러가 문자열의 끝
     url(r'^new/$', views.post_new),
