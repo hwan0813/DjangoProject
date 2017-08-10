@@ -33,5 +33,6 @@ urlpatterns = [
 
     url(r'^cbv/new/$', views_cbv.post_new),
     url(r'^cbv/(?P<pk>\d+)/edit/$', views_cbv.post_edit),
+    url(r'^cbv/(?P<pk>\d+)/delete/$', views_cbv.post_delete),
 
 ]
