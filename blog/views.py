@@ -1,9 +1,16 @@
 from django.shortcuts import redirect,render,get_object_or_404
-from blog.models import Book
+from .models import Book
 from .forms import PostForm
 from .models import Post
 
 # Create your views here.
+def post_detail(request, id):
+    post = get_object_or_404(Post, id=id)
+    return render(request, 'blog/post_detail.html',{
+    'post' : post,
+    })
+
+
 def post_list(request):
     return render(request, 'blog/post_list.html')
 
