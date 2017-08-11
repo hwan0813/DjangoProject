@@ -67,6 +67,7 @@ def post_edit(request, id):
 # 메인화면. 데이터베이스에서 가져와서 보여주는것 추가. 
 # pylint: disable=E1101
 def post_list2(request):
+
     qs = Post.objects.all()
     
     q = request.GET.get('q','') # q있으면 ㄴ가져오고 없으면 빈문자가져오고
