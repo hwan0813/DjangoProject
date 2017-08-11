@@ -71,6 +71,7 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'django.contrib.auth.context_processors.auth',
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
@@ -151,3 +152,8 @@ MESSAGE_LEVEL = constants.DEBUG # 지금부터 debug레벨의 message를 남길�
 MESSAGE_TAGS = {constants.ERROR:'danger'}
 
 NAVER_CLIENT_ID = 'TVSvSbaGBr8tEaCJY5Ee' 
+
+#LOGIN_REDIRECT_URL = '/accounts/profile/'
+LOGOUT_REDIRECT_URL = None
+
+AUTH_USER_MODEL = 'auth.User'
