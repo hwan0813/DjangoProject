@@ -5,9 +5,17 @@ from .models import Post, Comment, Tag
 #그냥 단순 등록이아니라 이렇게 하면 admin 계정에서 웹으로 관리할때 내용이 상세하게 보임. 
 @admin.register(Post) #장식자 형태로 쓴것. ... 까먹음. 
 class PostAdmin(admin.ModelAdmin):
-    list_display = ['id', 'title','status','content_size' ,'created_at', 'updated_at'
+    list_display = ['id', 'title','tag_list','status','content_size' ,'created_at', 'updated_at'
     ]
     actions = ['make_published','make_draft'] # 이렇게 액션 등록해야 만든 액션이 등록됨. 
+
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        return qs.prefetch_related('tag_set')
+
+    def tag_list(self,  post):
+        return ', '.join(tag.name for tag in post.tag_set.all()) # list_comprehension문법??
+
 
     def content_size(self,post):
         return mark_safe('<strong>{}</strong>글자'.format(len(post.content)))
