@@ -113,7 +113,7 @@ def excel_download(request):
         return response
 
 def comment_list(request):
-    comment_list = Comment.objects.all()
+    comment_list = Comment.objects.all().select_related('post')
     return render(request, 'dojo/comment_list.html', {
     'comment_list' : comment_list,
     })
