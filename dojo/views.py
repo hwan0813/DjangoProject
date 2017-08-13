@@ -68,8 +68,9 @@ def post_edit(request, id):
 # pylint: disable=E1101
 def post_list2(request):
 
-    qs = Post.objects.all()
-    
+    qs = Post.objects.all().prefetch_related('tag_set', 'comment_set')
+    #이렇게 prefetch_related 해주면 단체로 가져와서 장고단에서 조합해줌. ->sql문의 수가 급진적감소. 효율적.
+
     q = request.GET.get('q','') # q있으면 ㄴ가져오고 없으면 빈문자가져오고
     if q: # q가 있다면...?
         qs = qs.filter(title__icontains = q)
