@@ -3,7 +3,7 @@ import os
 from django.http import Http404
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import redirect ,render ,get_object_or_404
-from .models import Post
+from .models import Post, Comment
 from .forms import PostForm
 from django.contrib import messages
 
@@ -112,3 +112,8 @@ def excel_download(request):
         response['Content-Disposition'] = 'attachment; filename ="{}"'.format(filename)
         return response
 
+def comment_list(request):
+    comment_list = Comment.objects.all()
+    return render(request, 'dojo/comment_list.html', {
+    'comment_list' : comment_list,
+    })
