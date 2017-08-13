@@ -12,7 +12,14 @@ post_edit = UpdateView.as_view(model=Post, fields='__all__')
 post_detail = DetailView.as_view(model=Post)
 # 글다쓰고 자동으로 이동하는 페이지는 원래는 success_url 인자로 지정해주지만
 # 만약 안써도 현재 참조하는 모델에 get_absolute_url이 있으면 그 곳으로 이동한다.
-post_list = ListView.as_view(model=Post, paginate_by=10)
+
+
+class PostListView(ListView):
+    model = Post
+    queryset = Post.objects.all().prefetch_related('tag_set','comment_set')
+    paginate_by = 5
+
+post_list = PostListView.as_view()
 
 class PostListView1(View):
     
