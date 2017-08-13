@@ -16,7 +16,7 @@ urlpatterns = [
     url(r'^hello/(?P<name>[ㄱ-힣]+)/(?P<age>\d+)/$', views.hello),
     # views를 임포트해야 쓸수있음. 
     # dojo 나오고, sum 나오고 숫자!! 나오면 view.mysum이 호출된다는 말. 
-    url(r'^$',views_cbv.post_list , name='post_list'),
+    url(r'^$',views.post_list2 , name='post_list'),
     url(r'^list1/$',views.post_list1),
     url(r'^list2/$',views.post_list2, name='post_list2'), # URL Reverse를 위한 지정. 
     url(r'^list3/$',views.post_list3),
