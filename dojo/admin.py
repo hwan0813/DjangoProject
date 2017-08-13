@@ -32,7 +32,18 @@ class PostAdmin(admin.ModelAdmin):
 
 @admin.register(Comment)
 class CommnetAdmin(admin.ModelAdmin):
-    pass
+    list_display = ['id','author','post_content_len']
+    # 어드민에서도 빨리 보기위해. 효율적으로 끌어오는 방법1 
+    #list_select_related = ['post']
+
+    def post_content_len(self, comment):
+        return '{} 글자'.format(len(comment.post.content))
+    
+    #방법2
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        return qs.select_related('post')
+
 
 @admin.register(Tag)
 class TagAdmin(admin.ModelAdmin):
