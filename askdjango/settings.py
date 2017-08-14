@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blog', # 반드시 앱 생성후 여기 등록해야함. 끝에반드시 컴마
     'bootstrap3',
+    'raven.contrib.django.raven_compat',
     'debug_toolbar',
     'django_extensions',
     'crawl',
@@ -156,3 +157,18 @@ NAVER_CLIENT_ID = 'TVSvSbaGBr8tEaCJY5Ee'
 LOGOUT_REDIRECT_URL = None
 
 AUTH_USER_MODEL = 'auth.User'
+
+import raven
+#ref #SentryDashboard
+GIT_ROOT = BASE_DIR # FIXME: 현 프로젝트 ROOT 지정
+if os.path.exists(os.path.join(GIT_ROOT, '.git')):
+    release = raven.fetch_git_sha(GIT_ROOT) # 현재 최근 커밋해시 획득
+else:
+    release = 'dev'
+
+RAVEN_CONFIG = {
+    'dsn': 'https://d45a7146ed98499a9ba01750504f43ed:f70b2cc9cc8440fb91d94f16d7983476@sentry.io/203219',
+    # If you are using git, you can also automatically configure the
+    # release based on the git info.
+    'release': release,
+}
